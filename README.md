@@ -5,14 +5,14 @@
 #### Uses a linkedlist as our underlying container.
 #
 #### 1) Write Deque methods that are equivalent to Queue methods
-######  a) addLast(e)
-######  b) offerLast(e)
-######  c) removeFirst(e) 
-######  b) pollFirst()
-######  d) getFirst()
-######  e) peekFirst()
+######      a) addLast(e)
+######      b) offerLast(e)
+######      c) removeFirst(e) 
+######      b) pollFirst()
+######      d) getFirst()
+######      e) peekFirst()
 #### 2) Write Deque methods that are equivalent to Stack methods
-######  a) addFirst(e)
-######  b) removeFirst()
-######  c) peekFirst()
+######      a) addFirst(e)
+######      b) removeFirst()
+######      c) peekFirst()
 

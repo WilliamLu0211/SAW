@@ -4,6 +4,7 @@
 #### Our Deque
 #### Uses a doublelinkedlist as our underlying container.
 #
+#### **** Test each method after implementation ****
 #### 1) Write Deque methods that deal with first
 ###### a) void addFirst(E x)
 ###### b) boolean offerFirst(E x) 
@@ -23,3 +24,11 @@
 ###### a) boolean contains(Object x)
 ###### b) Iterator iterator()
 ###### c) Iterator descendingIterator()
+#### 4) Run
+#### 5) Make necessary changes
+#### 6) Repeat until perfection is achieved
+#
+#### 1) Write Deque interface
+#### 2) Write class that uses Deque interface
+#### 3) Test
+#### 4) Achieve perfection

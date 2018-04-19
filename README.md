@@ -4,25 +4,22 @@
 #### Our Deque
 #### Uses a doublelinkedlist as our underlying container.
 #
-#### 1) Write Deque methods that are equivalent to Queue methods
-######  a) addLast(e)
-######  b) offerLast(e)
-######  c) removeFirst(e) 
-######  b) pollFirst()
-######  d) getFirst()
-######  e) peekFirst()
-#### 2) Write Deque methods that are equivalent to Stack methods
-######  a) addFirst(e)
-######  b) removeFirst()
-#### 3) Write Deque methods that are similar to these methods.
-######  a) offerFirst(e)
-######  b) removeLast(e)
-######  c) removeLast()
-######  d) pollLast(0)
-######  e) getLast()
-######  f) peekLast()
-#### 4) Write other methods 
-######  a) iterator()
-######  b) add(e)
-######  c) contains(e)
-######  d) 
+#### 1) Write Deque methods that deal with first
+###### a) void addFirst(E x)
+###### b) boolean offerFirst(E x) 
+###### c) E removeFirst()
+###### d) E pollFirst()
+###### e) E getFirst()
+###### f) E peekFirst()
+###### g) E removeFirstOccurrence(Object x)
+#### 2) Write Deque methods that deal with last
+###### a) void addLast(E x);
+###### b) boolean offerLast(E x);
+###### c) E removeLast(); // throw exception if empty
+###### d) E pollLast(); // return null if empty
+###### e) E getLast(); // throw exception if empty
+###### f) E peekLast(); // return null if empty
+#### 3) Write other Deque methods (if deemed necessary)
+###### boolean contains(Object x)
+###### Iterator iterator()
+###### Iterator descendingIterator()

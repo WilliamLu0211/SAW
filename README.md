@@ -20,6 +20,6 @@
 ###### e) E getLast(); // throw exception if empty
 ###### f) E peekLast(); // return null if empty
 #### 3) Write other Deque methods (if deemed necessary)
-###### boolean contains(Object x)
-###### Iterator iterator()
-###### Iterator descendingIterator()
+###### a) boolean contains(Object x)
+###### b) Iterator iterator()
+###### c) Iterator descendingIterator()

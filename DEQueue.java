@@ -9,14 +9,14 @@ public class DEQueue<T> implements Deque<T> {
     private int _size;
     
     public DEQueue() {
+	_head = _tail = null;
 	_size = 0;
     }
 
     /* first */
     public void addFirst(E x) {
 	if ( isEmpty() ) {
-	    _head = new DLLNode(x, null, null);
-	    _tail = _head;
+	    _head = _tail = new DLLNode(x, null, null);
 	} else {
 	    _head.setPrev( new DLLNode(x, null, _head) );
 	    _head = _head.getPrev();
@@ -30,28 +30,72 @@ public class DEQueue<T> implements Deque<T> {
 
     // throw exception if empty
     public E removeFirst() {
-	E rtnVal;
 	if ( isEmpty() )
 	    throw NoSuchElementException;
 	else {
-	    rtnVal = _head.getCargo();
+	    E rtnVal = _head.getCargo();
 	    if ( _size == 1 )
+		_head = _tail = null;
+	    else {
+		_head = _head.getNext();
+		_head.setPrev(null);
+	    }
+	    size--;
+	    return rtnVal;
 	}
     }
+
+
+    // return null if empty
+    public E pollFirst() {
+	if ( isEmpty() )
+	    return null;
+	else {
+	    removeFirst(); // modularity!!!
+	}
+    } 
+
+    // throw exception if empty
+    public E getFirst() {
+	if ( isEmpty() )
+	    throw NoSuchElementException;
+	else {
+	    return _head.getCargo(); 
+	}
+    }
+
+    // return null if empty
+    public E peekFirst() {
+	if ( isEmpty() )
+	    throw NoSuchElementException;
+	else {
+	    getFirst();
+	}
+    } 
     
-    public E pollFirst(); // return null if empty
-    
-    public E getFirst(); // throw exception if empty
-    
-    public E peekFirst(); // return null if empty
-    
-    public E removeFirstOccurrence(Object x);
+    public boolean removeFirstOccurrence(Object x) {
+	DLLNode tmp = _head;
+	while ( _tmp.getNext() ) {
+	    return _tmp.getCargo().equals(x);
+	}
+	return false;
+    }
     /* first */
     
     /* last */
-    public void addLast(E x);
+    public void addLast(E x) {
+	if ( isEmpty() ) {
+	    _tail = _head = new DLLNode(x, null, null);
+	} else {
+	    _tail.setNext( new DLLNode(_tail, null, x) );
+	    _tail = _tail.getNext();
+	}
+	_size ++;
+    }
     
-    public boolean offerLast(E x);
+    public boolean offerLast(E x) {
+	
+    }
     
     public E removeLast(); // throw exception if empty
     

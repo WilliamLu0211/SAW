@@ -98,10 +98,21 @@ public class DEQueue<E> implements Deque<E> {
         DLLNode temp = _head;
         while ( temp != null ) {
             if ( temp.getCargo().equals(x) ) {
-                temp.getPrev().setNext( temp.getNext() );
-                temp.getNext().setPrev( temp.getPrev() );
+		if ( temp == _head ) {
+		    _head.getNext().setPrev(_head.getPrev());
+		    _head = _head.getNext();
+		}
+		else if ( temp == _tail ) {
+		    _tail.getPrev().setNext(_tail.getNext());
+		    _tail = _tail.getPrev();
+		}
+		else {	     
+		    temp.getPrev().setNext( temp.getNext() );
+		    temp.getNext().setPrev( temp.getPrev() );
+		}
                 _size --;
                 return true;
+		
             }
             temp = temp.getNext();
         }
@@ -189,14 +200,24 @@ public class DEQueue<E> implements Deque<E> {
 	DLLNode temp = _tail;
         while ( temp != null ) {
             if ( temp.getCargo().equals(x) ) {
-                temp.getPrev().setNext( temp.getNext() );
-                temp.getNext().setPrev( temp.getPrev() );
-                _size --;
-                return true;
-            }
-            temp = temp.getPrev();
-        }
-        return false;
+		if ( temp == _head ) {
+		    _head.getNext().setPrev(_head.getPrev());
+		    _head = _head.getNext();
+		}
+		else if ( temp == _tail ) {
+		    _tail.getPrev().setNext(_tail.getNext());
+		    _tail = _tail.getPrev();
+		}
+		else {
+		    temp.getPrev().setNext( temp.getNext() );
+		    temp.getNext().setPrev( temp.getPrev() );
+		}
+		_size --;
+		return true;
+	    }
+	    temp = temp.getPrev();
+	}
+	return false;
     }
     /* All methods that deal with last */
     
@@ -214,13 +235,13 @@ public class DEQueue<E> implements Deque<E> {
       returns false otherwise
       --------------------*/
     public boolean contains( Object x ) {
-        DLLNode temp = _head;
-        while ( temp != null ) {
-            if ( temp.getCargo().equals(x) )
-                return true;
-            temp = temp.getNext();
-        }
-        return false;
+	DLLNode temp = _head;
+	while ( temp != null ) {
+	    if ( temp.getCargo().equals(x) )
+		return true;
+	    temp = temp.getNext();
+	}
+	return false;
     }
 
     /*--------------------
@@ -232,73 +253,73 @@ public class DEQueue<E> implements Deque<E> {
     /* nested class MyIterator */
     private class MyIterator<E> implements Iterator<E> {
         
-        private DLLNode<E> _temp;
-        private boolean forward;
-        private boolean _okToRemove;
+	private DLLNode<E> _temp;
+	private boolean forward;
+	private boolean _okToRemove;
 
 	//default constructor 
-        public MyIterator( int d ) {
-            if ( d == 0 ) {
-                _temp = new DLLNode( null, null, _head );
-                forward = true;
-            } else {
-                _temp = new DLLNode( null, _tail, null );
-                forward = false;
-            }
-            _okToRemove = false;
-        }
+	public MyIterator( int d ) {
+	    if ( d == 0 ) {
+		_temp = new DLLNode( null, null, _head );
+		forward = true;
+	    } else {
+		_temp = new DLLNode( null, _tail, null );
+		forward = false;
+	    }
+	    _okToRemove = false;
+	}
 
 	/*--------------------
 	  boolean hasNext()
 	  returns true if there is another item in the DEQueue
 	  --------------------*/
-        public boolean hasNext() {
-            if (forward) return _temp.getNext() != null;
-            else return _temp.getPrev() != null;
-        }
+	public boolean hasNext() {
+	    if (forward) return _temp.getNext() != null;
+	    else return _temp.getPrev() != null;
+	}
 
 	/*--------------------
 	  E next()
 	  throws a NoSuchElementException if there is no next item
 	  else returns the next element, sets _okToRemove to true
 	  --------------------*/
-        public E next() {
-            if (forward) {
-                _temp = _temp.getNext();
-                if ( _temp == null )
-                    throw new NoSuchElementException();
-            } else {
-                _temp = _temp.getPrev();
-                if ( _temp == null )
-                    throw new NoSuchElementException();
-            }
-            _okToRemove = true;
-            return _temp.getCargo();
-        }
+	public E next() {
+	    if (forward) {
+		_temp = _temp.getNext();
+		if ( _temp == null )
+		    throw new NoSuchElementException();
+	    } else {
+		_temp = _temp.getPrev();
+		if ( _temp == null )
+		    throw new NoSuchElementException();
+	    }
+	    _okToRemove = true;
+	    return _temp.getCargo();
+	}
 
 	/*--------------------
 	  void remove()
 	  throws IllegalStateException if _okToRemove is false
 	  else removes the nextElement, sets _okToRemove to false, decrements size
 	  --------------------*/
-        public void remove() {
-            if ( ! _okToRemove )
-                throw new IllegalStateException("must call next() beforehand");
-            if ( _head == _tail )
-                _head = _tail = null;
-            else  if ( _temp == _head ) {
-                _head = _head.getNext();
-                _head.setPrev( null );
-            } else if ( _temp == _tail ) {
-                _tail = _tail.getPrev();
-                _tail.setNext( null );
-            } else {
-                _temp.getNext().setPrev( _temp.getPrev() );
-                _temp.getPrev().setNext( _temp.getNext() );
-            }
-            _okToRemove = false;
-            _size --;
-        }
+	public void remove() {
+	    if ( ! _okToRemove )
+		throw new IllegalStateException("must call next() beforehand");
+	    if ( _head == _tail )
+		_head = _tail = null;
+	    else  if ( _temp == _head ) {
+		_head = _head.getNext();
+		_head.setPrev( null );
+	    } else if ( _temp == _tail ) {
+		_tail = _tail.getPrev();
+		_tail.setNext( null );
+	    } else {
+		_temp.getNext().setPrev( _temp.getPrev() );
+		_temp.getPrev().setNext( _temp.getNext() );
+	    }
+	    _okToRemove = false;
+	    _size --;
+	}
     }
 
     /*--------------------
@@ -306,7 +327,7 @@ public class DEQueue<E> implements Deque<E> {
       returns an instance of MyIterator that iterates from left to right
       --------------------*/
     public Iterator<E> iterator() {
-        return new MyIterator(0);
+	return new MyIterator(0);
     }
 
     /*--------------------
@@ -314,7 +335,7 @@ public class DEQueue<E> implements Deque<E> {
       returns an instance of MyIterator that iterates from right to left
       --------------------*/
     public Iterator<E> 	descendingIterator() {
-        return new MyIterator(1);
+	return new MyIterator(1);
     } 
     /* general */
     

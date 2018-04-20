@@ -15,16 +15,15 @@ We decided on a doubly-linked list as our underlying container, due to it provid
 
 ### Our In-Depth Process
 1) Write Deque methods that deal with first
-    - [x] void addFirst(E x)
-    - [x] boolean offerFirst(E x) 
+    - [x] void addFirst(E x) 
     - [x] E removeFirst()
     - [x] E pollFirst()
     - [x] E getFirst()
     - [x] E peekFirst()
     - [x] E removeFirstOccurrence(Object x)
+    - [x] E removeLastOccurrence(Object x)
 2) Write Deque methods that deal with last
     - [x] void addLast(E x);
-    - [x] boolean offerLast(E x);
     - [x] E removeLast(); // throw exception if empty
     - [x] E pollLast(); // return null if empty
     - [x] E getLast(); // throw exception if empty
@@ -36,7 +35,8 @@ We decided on a doubly-linked list as our underlying container, due to it provid
 3) Test each method after implementation
 4) Run entire class
 5) Make necessary changes
-6) **Repeat** until perfection is achieved
+6) Make a driver file to test implementation
+7) **Repeat** until perfection is achieved
 
 
 Bet nobody [**SAW**](http://m.memegen.com/b07s25.jpg) this coming..

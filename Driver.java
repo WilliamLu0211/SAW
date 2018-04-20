@@ -5,7 +5,7 @@
 import java.util.Iterator;
 public class Driver {
     public static void main(String[] args) {
-	DEQueue josh= new DEQueue<Integer>();
+	QQKachoo josh= new QQKachoo<Integer>();
 	System.out.println("adding ints [0,9) to josh at the front.....");
 	for (int i = 0; i < 10; i++) { 
 	    josh.addFirst(i);

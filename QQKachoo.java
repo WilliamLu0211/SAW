@@ -6,14 +6,14 @@
 import java.util.NoSuchElementException;
 import java.util.Iterator;
     
-public class DEQueue<E> implements Deque<E> {
+public class QQKachoo<E> implements Deque<E> {
 
     //instance vars
     private DLLNode<E> _head, _tail;
     private int _size;
 
     //default constructor
-    public DEQueue() {
+    public QQKachoo() {
         _head = _tail = null;
         _size = 0;
     }

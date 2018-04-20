@@ -337,6 +337,21 @@ public class QQKachoo<E> implements Deque<E> {
     public Iterator<E> 	descendingIterator() {
 	return new MyIterator(1);
     } 
+
+    /*--------------------
+      String toString()
+      returns a visual representation of this Deque object
+      --------------------*/
+    public String toString() {
+	String s = "null <-";
+	DLLNode temp = _head;
+	while ( temp != null ) {
+	    s += "-> " + temp + " <-";
+	    temp = temp.getNext();
+	}
+	s += "-> null";
+	return s;
+    }
     /* general */
     
 }

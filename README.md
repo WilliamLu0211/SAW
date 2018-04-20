@@ -32,6 +32,7 @@ We decided on a doubly-linked list as our underlying container, due to it provid
     - [x] boolean contains(Object x)
     - [x] Iterator iterator()
     - [x] Iterator descendingIterator()
+    - [x] String toString()
 3) Test each method after implementation
 4) Run entire class
 5) Make necessary changes

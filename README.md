@@ -1,5 +1,5 @@
 # Team SAW 
-## **_S_**hayan Chowdhury, **_A_**ddison Huang, **_W_**illiam Lu
+## *S*hayan Chowdhury, *A*ddison Huang, *W*illiam Lu
 ### APCS2 pd2
 #
 ### Our Deque
@@ -15,24 +15,24 @@ We decided on a doubly-linked list as our underlying container, due to it provid
 
 ### Our In-Depth Process
 1) Write Deque methods that deal with first
-  - [x] void addFirst(E x)
-  - [x] boolean offerFirst(E x) 
-  - [x] E removeFirst()
-  - [x] E pollFirst()
-  - [x] E getFirst()
-  - [x] E peekFirst()
-  - [x] E removeFirstOccurrence(Object x)
+    - [x] void addFirst(E x)
+    - [x] boolean offerFirst(E x) 
+    - [x] E removeFirst()
+    - [x] E pollFirst()
+    - [x] E getFirst()
+    - [x] E peekFirst()
+    - [x] E removeFirstOccurrence(Object x)
 2) Write Deque methods that deal with last
-  - [x] void addLast(E x);
-  - [x] boolean offerLast(E x);
-  - [x] E removeLast(); // throw exception if empty
-  - [x] E pollLast(); // return null if empty
-  - [x] E getLast(); // throw exception if empty
-  - [x] E peekLast(); // return null if empty
+    - [x] void addLast(E x);
+    - [x] boolean offerLast(E x);
+    - [x] E removeLast(); // throw exception if empty
+    - [x] E pollLast(); // return null if empty
+    - [x] E getLast(); // throw exception if empty
+    - [x] E peekLast(); // return null if empty
 3) Write other Deque methods (if deemed necessary)
-  - [x] boolean contains(Object x)
-  - [x] Iterator iterator()
-  - [x] Iterator descendingIterator()
+    - [x] boolean contains(Object x)
+    - [x] Iterator iterator()
+    - [x] Iterator descendingIterator()
 3) Test each method after implementation
 4) Run entire class
 5) Make necessary changes

@@ -10,7 +10,7 @@ public interface Deque<E> extends Iterable<E> {
     /* first */
     public void addFirst(E x);
     
-    public boolean offerFirst(E x);
+    //public boolean offerFirst(E x);
     
     public E removeFirst(); // throw exception if empty
     
@@ -20,13 +20,13 @@ public interface Deque<E> extends Iterable<E> {
     
     public E peekFirst(); // return null if empty
     
-    public E removeFirstOccurrence(Object x);
+    public boolean removeFirstOccurrence(Object x);
     /* first */
     
     /* last */
     public void addLast(E x);
     
-    public boolean offerLast(E x);
+    //public boolean offerLast(E x);
     
     public E removeLast(); // throw exception if empty
     
@@ -35,6 +35,8 @@ public interface Deque<E> extends Iterable<E> {
     public E getLast(); // throw exception if empty
     
     public E peekLast(); // return null if empty
+
+     public boolean removeLastOccurrence(Object x);
     /* last */
     
     /* general */

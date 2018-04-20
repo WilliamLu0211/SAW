@@ -6,62 +6,94 @@
 import java.util.NoSuchElementException;
 import java.util.Iterator;
     
-public class DEQueue<T> implements Deque<T> {
+public class DEQueue<E> implements Deque<E> {
 
-    private DLLNode<T> _head, _tail;
+    //instance vars
+    private DLLNode<E> _head, _tail;
     private int _size;
-    
+
+    //default constructor
     public DEQueue() {
         _head = _tail = null;
         _size = 0;
     }
 
-    /* first */
+    /* All methods that deal with first */
+    /*--------------------
+      void addFirst(E x)
+      adds x to the front of the DEQueue
+      increments size by 1
+      --------------------*/
     public void addFirst(E x) {
-        if ( isEmpty() ) {
-            _head = _tail = new DLLNode(x, null, null);
+        if ( isEmpty() ) { //special case if DEQueue is empty
+            _head = _tail = new DLLNode<E>(x, null, null);
         } else {
-            _head.setPrev( new DLLNode(x, null, _head) );
+            _head.setPrev( new DLLNode<E>(x, null, _head) );
             _head = _head.getPrev();
         }
         _size ++;
     }
 
-    // throw exception if empty
+    /*--------------------
+      E removeFirst()
+      throws a NoSuchElementException if the DEQueue is empty
+      else removes the first item in the DEQueue 
+      decrements size 
+      returns the item that is removed
+      --------------------*/
     public E removeFirst() {
         if ( isEmpty() )
             throw new NoSuchElementException();
         E rtnVal = _head.getCargo();
         _head = _head.getNext();
-        if ( _size == 1 )
+        if ( _size == 1 ) //special case if there is only 1 item in the DEQueue
             _tail = _head;
         else _head.setPrev( null );
-        size--;
+        _size--;
         return rtnVal;
     }
 
-
-    // return null if empty
+    /*--------------------
+      E pollFirst()
+      returns null if the DEQueue is empty
+      else removes the first item in the DEQueue 
+      decrements size 
+      returns the item that is removed
+      --------------------*/
     public E pollFirst() {
         if ( isEmpty() )
             return null;
         return removeFirst(); // modularity!!!
     } 
 
-    // throw exception if empty
+    /*--------------------
+      E getFirst()
+      throws a NoSuchElementException if the DEQueue is empty
+      else returns the first item in the DEQueue
+      --------------------*/
     public E getFirst() {
         if ( isEmpty() )
             throw new NoSuchElementException();
         return _head.getCargo(); 
     }
 
-    // return null if empty
+    /*--------------------
+      E peekFirst()
+      returns null if the DEQueue is empty
+      else returns the first item in the DEQueue
+      --------------------*/
     public E peekFirst() {
         if ( isEmpty() )
             return null;
         return getFirst();
     }
-    
+
+    /*--------------------
+      boolean removeFirstOccurence(Object x)
+      removes the first occurence of x in the DEQueue
+      returns true if it was successful, decrements size
+      returns false if it was unsuccessful
+      --------------------*/
     public boolean removeFirstOccurrence(Object x) {
         DLLNode temp = _head;
         while ( temp != null ) {
@@ -75,57 +107,112 @@ public class DEQueue<T> implements Deque<T> {
         }
         return false;
     }
-    /* first */
+    /* All methods that deal with first */
     
-    /* last */
+    /* All methods that deal with last */
+    /*--------------------
+      void addLast(E x)
+      adds x to the back of the DEQueue
+      increments size by 1
+      --------------------*/
     public void addLast(E x) {
         if ( isEmpty() ) {
-            _tail = _head = new DLLNode(x, null, null);
+            _tail = _head = new DLLNode<E>(x, null, null);
         } else {
-            _tail.setNext( new DLLNode(x, _tail, null) );
+            _tail.setNext( new DLLNode<E>(x, _tail, null) );
             _tail = _tail.getNext();
         }
         _size ++;
     }
-    
-    // throw exception if empty
+
+    /*--------------------
+      E removeLast()
+      throws a NoSuchElementException if the DEQueue is empty
+      else removes the last item in the DEQueue 
+      decrements size 
+      returns the item that is removed
+      --------------------*/
     public E removeLast() {
-        if ( isEmpty() )
+        if ( isEmpty() ) //special case if the DEQueue is empty
             throw new NoSuchElementException();
         E rtnVal = _tail.getCargo();
         _tail = _tail.getPrev();
         if ( _size == 1 )
             _head = _tail;
         else _tail.setNext( null );
-        size--;
+        _size--;
         return rtnVal;
     }
-    
-    // return null if empty
+
+    /*--------------------
+      E pollLast()
+      returns null if the DEQueue is empty
+      else removes the last item in the DEQueue 
+      decrements size 
+      returns the item that is removed
+      --------------------*/
     public E pollLast() {
         if ( isEmpty() )
             return null;
         return removeLast();
     }
-    
-    // throws exception if empty
+
+    /*--------------------
+      E getLast()
+      throws a NoSuchElementException if the DEQueue is empty
+      else returns the last item in the DEQueue
+      --------------------*/
     public E getLast() {
         if ( isEmpty() )
             throw new NoSuchElementException();
         return _tail.getCargo();
     }
-    
-    // return null if empty
+
+    /*--------------------
+      E peekLast()
+      returns null if the DEQueue is empty
+      else returns the last item in the DEQueue
+      --------------------*/
     public E peekLast() {
         if ( isEmpty() )
             return null;
         return getLast();
     }
-    /* last */
+
+    /*--------------------
+      boolean removeLastOccurence(Object x)
+      removes the last occurence of x in the DEQueue
+      returns true if it was successful, decrements size
+      returns false if it was unsuccessful
+      --------------------*/
+    public boolean removeLastOccurrence(Object x) {
+	DLLNode temp = _tail;
+        while ( temp != null ) {
+            if ( temp.getCargo().equals(x) ) {
+                temp.getPrev().setNext( temp.getNext() );
+                temp.getNext().setPrev( temp.getPrev() );
+                _size --;
+                return true;
+            }
+            temp = temp.getPrev();
+        }
+        return false;
+    }
+    /* All methods that deal with last */
     
     /* general */
+    /*--------------------
+      boolean isEmpty()
+      returns true if the size of the DEQueue is 0
+      returns false otherwise
+      --------------------*/
     public boolean isEmpty() { return _size == 0; }
-    
+
+    /*--------------------
+      boolean contains(Object x)
+      returns true if Object x is in the DEQueue
+      returns false otherwise
+      --------------------*/
     public boolean contains( Object x ) {
         DLLNode temp = _head;
         while ( temp != null ) {
@@ -135,13 +222,21 @@ public class DEQueue<T> implements Deque<T> {
         }
         return false;
     }
-    
-    private class MyIterator implements Iterator<E> {
+
+    /*--------------------
+      int size()
+      accessor for size
+      --------------------*/
+    public int size() { return _size; }
+
+    /* nested class MyIterator */
+    private class MyIterator<E> implements Iterator<E> {
         
         private DLLNode<E> _temp;
         private boolean forward;
         private boolean _okToRemove;
-        
+
+	//default constructor 
         public MyIterator( int d ) {
             if ( d == 0 ) {
                 _temp = new DLLNode( null, null, _head );
@@ -152,12 +247,21 @@ public class DEQueue<T> implements Deque<T> {
             }
             _okToRemove = false;
         }
-        
+
+	/*--------------------
+	  boolean hasNext()
+	  returns true if there is another item in the DEQueue
+	  --------------------*/
         public boolean hasNext() {
             if (forward) return _temp.getNext() != null;
             else return _temp.getPrev() != null;
         }
-        
+
+	/*--------------------
+	  E next()
+	  throws a NoSuchElementException if there is no next item
+	  else returns the next element, sets _okToRemove to true
+	  --------------------*/
         public E next() {
             if (forward) {
                 _temp = _temp.getNext();
@@ -171,16 +275,21 @@ public class DEQueue<T> implements Deque<T> {
             _okToRemove = true;
             return _temp.getCargo();
         }
-        
+
+	/*--------------------
+	  void remove()
+	  throws IllegalStateException if _okToRemove is false
+	  else removes the nextElement, sets _okToRemove to false, decrements size
+	  --------------------*/
         public void remove() {
             if ( ! _okToRemove )
                 throw new IllegalStateException("must call next() beforehand");
             if ( _head == _tail )
                 _head = _tail = null;
-            else  if ( _temp = _head ) {
+            else  if ( _temp == _head ) {
                 _head = _head.getNext();
                 _head.setPrev( null );
-            } else if ( _temp = _tail ) {
+            } else if ( _temp == _tail ) {
                 _tail = _tail.getPrev();
                 _tail.setNext( null );
             } else {
@@ -191,16 +300,22 @@ public class DEQueue<T> implements Deque<T> {
             _size --;
         }
     }
-    
+
+    /*--------------------
+      Iterator<E> iterator()
+      returns an instance of MyIterator that iterates from left to right
+      --------------------*/
     public Iterator<E> iterator() {
         return new MyIterator(0);
     }
-    
+
+    /*--------------------
+      Iterator<E> descendingIterator()
+      returns an instance of MyIterator that iterates from right to left
+      --------------------*/
     public Iterator<E> 	descendingIterator() {
         return new MyIterator(1);
-    }
-    
-    public int size() { return _size; }
+    } 
     /* general */
     
 }

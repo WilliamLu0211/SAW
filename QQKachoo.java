@@ -48,7 +48,8 @@ public class QQKachoo<E> implements Deque<E> {
         _head = _head.getNext();
         if ( _size == 1 ) //special case if there is only 1 item in the DEQueue
             _tail = _head;
-        else _head.setPrev( null );
+        else 
+            _head.setPrev( null );
         _size--;
         return rtnVal;
     }
@@ -98,18 +99,18 @@ public class QQKachoo<E> implements Deque<E> {
         DLLNode temp = _head;
         while ( temp != null ) {
             if ( temp.getCargo().equals(x) ) {
-		if ( temp == _head ) {
-		    _head.getNext().setPrev(_head.getPrev());
-		    _head = _head.getNext();
-		}
-		else if ( temp == _tail ) {
-		    _tail.getPrev().setNext(_tail.getNext());
-		    _tail = _tail.getPrev();
-		}
-		else {	     
-		    temp.getPrev().setNext( temp.getNext() );
-		    temp.getNext().setPrev( temp.getPrev() );
-		}
+                if ( temp == _head ) {
+                    _head.getNext().setPrev(_head.getPrev());
+                    _head = _head.getNext();
+                }
+                else if ( temp == _tail ) {
+                    _tail.getPrev().setNext(_tail.getNext());
+                    _tail = _tail.getPrev();
+                }
+                else {	     
+                    temp.getPrev().setNext( temp.getNext() );
+                    temp.getNext().setPrev( temp.getPrev() );
+                }
                 _size --;
                 return true;
 		
@@ -150,7 +151,8 @@ public class QQKachoo<E> implements Deque<E> {
         _tail = _tail.getPrev();
         if ( _size == 1 )
             _head = _tail;
-        else _tail.setNext( null );
+        else 
+            _tail.setNext( null );
         _size--;
         return rtnVal;
     }
@@ -197,27 +199,27 @@ public class QQKachoo<E> implements Deque<E> {
       returns false if it was unsuccessful
       --------------------*/
     public boolean removeLastOccurrence(Object x) {
-	DLLNode temp = _tail;
-        while ( temp != null ) {
-            if ( temp.getCargo().equals(x) ) {
-		if ( temp == _head ) {
-		    _head.getNext().setPrev(_head.getPrev());
-		    _head = _head.getNext();
-		}
-		else if ( temp == _tail ) {
-		    _tail.getPrev().setNext(_tail.getNext());
-		    _tail = _tail.getPrev();
-		}
-		else {
-		    temp.getPrev().setNext( temp.getNext() );
-		    temp.getNext().setPrev( temp.getPrev() );
-		}
-		_size --;
-		return true;
-	    }
-	    temp = temp.getPrev();
-	}
-	return false;
+        DLLNode temp = _tail;
+            while ( temp != null ) {
+                if ( temp.getCargo().equals(x) ) {
+                    if ( temp == _head ) {
+                        _head.getNext().setPrev(_head.getPrev());
+                        _head = _head.getNext();
+                    }
+                    else if ( temp == _tail ) {
+                        _tail.getPrev().setNext(_tail.getNext());
+                        _tail = _tail.getPrev();
+                    }
+                    else {
+                        temp.getPrev().setNext( temp.getNext() );
+                        temp.getNext().setPrev( temp.getPrev() );
+                    }
+                    _size --;
+                    return true;
+                }
+            temp = temp.getPrev();
+            }
+        return false;
     }
     /* All methods that deal with last */
     
@@ -235,13 +237,14 @@ public class QQKachoo<E> implements Deque<E> {
       returns false otherwise
       --------------------*/
     public boolean contains( Object x ) {
-	DLLNode temp = _head;
-	while ( temp != null ) {
-	    if ( temp.getCargo().equals(x) )
-		return true;
-	    temp = temp.getNext();
-	}
-	return false;
+        DLLNode temp = _head;
+        while ( temp != null ) {
+            if ( temp.getCargo().equals(x) )
+                return true;
+            
+            temp = temp.getNext();
+        }
+        return false;
     }
 
     /*--------------------
